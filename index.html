@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login System</title>
+    <style>
+       body {
+    background-color: #000000;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container */
+.container {
+    background: #111;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+    text-align: center;
+    width: 360px;
+    transition: 0.3s ease-in-out;
+}
+
+.container:hover {
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
+}
+
+/* Form Titles */
+h2 {
+    font-size: 24px;
+    text-transform: uppercase;
+    color: #00F7FF;
+    text-shadow: 0 0 10px rgba(0, 247, 255, 0.6);
+    margin-bottom: 20px;
+}
+
+/* Input Fields */
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+    position: relative;
+}
+
+.input-group label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    display: block;
+    color: #ddd;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background: #222;
+    color: #fff;
+    outline: none;
+    box-shadow: inset 0 0 8px rgba(0, 247, 255, 0.2);
+    border: 1px solid #333;
+    transition: 0.3s ease-in-out;
+}
+
+.input-group input:focus {
+    background: #000;
+    box-shadow: 0 0 12px rgba(0, 247, 255, 0.6);
+    border: 1px solid #00F7FF;
+}
+
+/* Password Toggle Icon */
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #ccc;
+    font-size: 18px;
+}
+
+/* Buttons */
+.btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #00F7FF, #d37eff);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(0, 247, 255, 0.3);
+}
+
+.btn:hover {
+    background: linear-gradient(135deg, #d37eff, #00F7FF);
+    box-shadow: 0 0 15px rgba(0, 247, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+/* Links */
+.container p {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #ccc;
+}
+
+.container a {
+    color: #00F7FF;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.container a:hover {
+    text-decoration: underline;
+    color: #d37eff;
+}
+
+/* Hide Forms */
+.form-box {
+    display: none;
+}
+
+.active {
+    display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 400px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .btn {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .input-group input {
+        padding: 10px;
+    }
+}
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Login Form -->
+        <div id="login-form" class="form-box active">
+            <h2>Login</h2>
+            <form>
+                <div class="input-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" placeholder="Enter your email" required>
+                </div>
+                <div class="input-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" placeholder="Enter your password" required>
+                    <span class="toggle-password" onclick="togglePassword('login-password')">👁️</span>
+                </div>
+                <button type="submit" class="btn">Login</button>
+            </form>
+            <p><a href="#" onclick="showForm('forgot-form')">Forgot Password?</a></p>
+            <p>Don't have an account? <a href="#" onclick="showForm('signup-form')">Sign up</a></p>
+        </div>
+
+        <!-- Sign-Up Form -->
+        <div id="signup-form" class="form-box">
+            <h2>Sign Up</h2>
+            <form>
+                <div class="input-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" placeholder="Enter your full name" required>
+                </div>
+                <div class="input-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" placeholder="Enter your email" required>
+                </div>
+                <div class="input-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="Enter your phone number">
+                </div>
+                <div class="input-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" placeholder="Create a password" required>
+                    <span class="toggle-password" onclick="togglePassword('signup-password')">👁️</span>
+                </div>
+                <div class="input-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" placeholder="Confirm your password" required>
+                </div>
+                <button type="submit" class="btn">Sign Up</button>
+            </form>
+            <p>Already have an account? <a href="#" onclick="showForm('login-form')">Login</a></p>
+        </div>
+
+        <!-- Forgot Password Form -->
+        <div id="forgot-form" class="form-box">
+            <h2>Forgot Password</h2>
+            <form>
+                <div class="input-group">
+                    <label for="forgot-email">Email</label>
+                    <input type="email" id="forgot-email" placeholder="Enter your registered email" required>
+                </div>
+                <button type="submit" class="btn">Reset Password</button>
+            </form>
+            <p>Remember your password? <a href="#" onclick="showForm('login-form')">Login</a></p>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword(id) {
+            const input = document.getElementById(id);
+            input.type = input.type === "password" ? "text" : "password";
+        }
+
+        function showForm(formId) {
+            document.querySelectorAll('.form-box').forEach(form => form.classList.remove('active'));
+            document.getElementById(formId).classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
